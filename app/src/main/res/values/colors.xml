@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#204051</color>
+    <color name="colorPrimaryDark">#204051</color>
+    <color name="colorAccent">#FFA931</color>
+    <color name="colorAzul">#1b262c</color>
+    <color name="colorAzulcero">#0f4c75</color>
+    <color name="colorceleste">#3282b8</color>
+    <color name="colorGris">#787878</color>
+    <color name="colorBlanco">#FFFFFF</color>
+    <color name="colorVerde">#21bf73</color>
+    <color name="colorRojo">#fd5e53</color>
+    <color name="colorbotonAgregar">#004445</color>
+    <color name="colorbotonMostrar">#393939</color>
+    <color name="colorbotonActualizar">#FE9801</color>
+</resources>
