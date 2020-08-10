@@ -162,8 +162,8 @@ public class RecordListActivity extends AppCompatActivity {
             Intent intent = new Intent(Intent.ACTION_SEND);
             intent.setType("text/plain");
             intent.putExtra(Intent.EXTRA_SUBJECT, getResources().getString(R.string.app_name));
-            String aux = "Descarga la App\n";
-            aux = aux + "https://play.google.com/store/apps/details?id=com.apputilose.teo.birthdayremember" + getBaseContext().getPackageName();
+            String aux = "Descarga la App \uD83D\uDCEC \n";
+            aux = aux + "https://play.google.com/store/apps/details?id=com.apputilose.teo.birthdayremember&hl=es_419" + getBaseContext().getPackageName();
             intent.putExtra(Intent.EXTRA_TEXT, aux);
             startActivity(intent);
         } catch (Exception e) {
