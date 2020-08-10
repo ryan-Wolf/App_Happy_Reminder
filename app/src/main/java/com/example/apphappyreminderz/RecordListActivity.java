@@ -47,7 +47,7 @@ public class RecordListActivity extends AppCompatActivity {
 
     ImageView imageViewIcon;
 
-    FloatingActionButton btn_cambiar;
+    FloatingActionButton btn_cambiar, btn_mapa, btn_compartir;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -58,6 +58,23 @@ public class RecordListActivity extends AppCompatActivity {
         actionBar.setTitle("\uD83C\uDF81 Lista de Cumpleañeros");
 
         btn_cambiar = findViewById(R.id.BtnFloat);
+        btn_mapa = findViewById(R.id.btnMapa);
+        btn_compartir = findViewById(R.id.btncompartir);
+
+        btn_compartir.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                CompartirApp();
+            }
+        });
+
+        btn_mapa.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(RecordListActivity.this, MapsActivity.class));
+            }
+        });
+
         btn_cambiar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -129,6 +146,20 @@ public class RecordListActivity extends AppCompatActivity {
                 return true;
             }
         });
+    }
+
+    private void CompartirApp() {
+        try {
+            Intent intent = new Intent(Intent.ACTION_SEND);
+            intent.setType("text/plain");
+            intent.putExtra(Intent.EXTRA_SUBJECT, getResources().getString(R.string.app_name));
+            String aux = "Descarga la App\n";
+            aux = aux + "https://play.google.com/store/apps/details?id=com.apputilose.teo.birthdayremember" + getBaseContext().getPackageName();
+            intent.putExtra(Intent.EXTRA_TEXT, aux);
+            startActivity(intent);
+        } catch (Exception e) {
+
+        }
     }
 
     private void showDialogDelete(final int idRecord) {
