@@ -63,7 +63,7 @@ public class Notificacion extends Worker {
                 .setWhen(System.currentTimeMillis())
                 .setContentTitle(t)
                 .setTicker("Nuevo notificacion")
-                .setSmallIcon(R.mipmap.ic_launcher)
+                .setSmallIcon(R.drawable.ic_pastel)
                 .setContentText(d)
                 .setContentIntent(pendingIntent)
                 .setContentInfo("nuevo");

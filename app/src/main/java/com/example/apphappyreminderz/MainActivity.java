@@ -200,7 +200,7 @@ public class MainActivity extends AppCompatActivity {
                 long Alerttime = calendar.getTimeInMillis() - System.currentTimeMillis();
                 int random = (int) (Math.random() * 50 + 1);
 
-                Data data = guardarData("Notificacion", "soy un detalle", random);
+                Data data = guardarData("\uD83D\uDCAC Hoy cumple años una persona", "Revisa la lista de los cumpleañeros.", random);
                 Notificacion.GuardarNotificacion(Alerttime, data, "tag1");
                 Toast.makeText(MainActivity.this, "Alarma Guardada", Toast.LENGTH_SHORT).show();
             }

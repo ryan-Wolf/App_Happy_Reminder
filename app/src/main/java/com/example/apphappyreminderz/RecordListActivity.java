@@ -53,7 +53,7 @@ public class RecordListActivity extends AppCompatActivity {
 
     FloatingActionButton btn_cambiar, btn_mapa, btn_compartir;
 
-    Date fechaact = new Date();
+    Date txtFechaAct = new Date();
     int aa = 0;
     int ma = 0;
     int anio = 0, mes = 0, dia = 0;
@@ -211,9 +211,7 @@ public class RecordListActivity extends AppCompatActivity {
         final TextView edtFechaNoti = dialog.findViewById(R.id.txtMfechaNot);
         final TextView edtTiempo = dialog.findViewById(R.id.txtMTiempoNot);
         Button btnActualizar = dialog.findViewById(R.id.btnActualizar);
-        Button btnFecha=dialog.findViewById(R.id.btnFechaNac);
-        // --
-
+        Button btnFecha = dialog.findViewById(R.id.btnFechaNac);
 
         // --
         Cursor cursor = MainActivity.mSQLiteHelper.getData("SELECT * FROM RECORDV2 WHERE id=" + position);
@@ -293,7 +291,6 @@ public class RecordListActivity extends AppCompatActivity {
                 updateRecordList();
             }
         });
-
 
         btnFecha.setOnClickListener(new View.OnClickListener() {
             @Override
