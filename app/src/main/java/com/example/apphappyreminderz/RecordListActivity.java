@@ -9,6 +9,7 @@ import androidx.core.app.ActivityCompat;
 
 import android.Manifest;
 import android.app.Activity;
+import android.app.DatePickerDialog;
 import android.app.Dialog;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -26,6 +27,7 @@ import android.view.Gravity;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.Button;
+import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.ListView;
@@ -38,6 +40,8 @@ import com.theartofdev.edmodo.cropper.CropImageView;
 
 import java.io.ByteArrayOutputStream;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
 
 public class RecordListActivity extends AppCompatActivity {
 
@@ -48,6 +52,11 @@ public class RecordListActivity extends AppCompatActivity {
     ImageView imageViewIcon;
 
     FloatingActionButton btn_cambiar, btn_mapa, btn_compartir;
+
+    Date fechaact = new Date();
+    int aa = 0;
+    int ma = 0;
+    int anio = 0, mes = 0, dia = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -202,6 +211,9 @@ public class RecordListActivity extends AppCompatActivity {
         final TextView edtFechaNoti = dialog.findViewById(R.id.txtMfechaNot);
         final TextView edtTiempo = dialog.findViewById(R.id.txtMTiempoNot);
         Button btnActualizar = dialog.findViewById(R.id.btnActualizar);
+        Button btnFecha=dialog.findViewById(R.id.btnFechaNac);
+        // --
+
 
         // --
         Cursor cursor = MainActivity.mSQLiteHelper.getData("SELECT * FROM RECORDV2 WHERE id=" + position);
@@ -281,6 +293,43 @@ public class RecordListActivity extends AppCompatActivity {
                 updateRecordList();
             }
         });
+
+
+        btnFecha.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Calendar ca = Calendar.getInstance();
+                anio = ca.get(Calendar.YEAR);
+                mes = ca.get(Calendar.MONTH);
+                final int dia = ca.get(Calendar.DAY_OF_MONTH);
+                DatePickerDialog recogerFecha = new DatePickerDialog(view.getContext(), new DatePickerDialog.OnDateSetListener() {
+                    @Override
+                    public void onDateSet(DatePicker view, int año, int mesi, int diaa) {
+                        final int mesActual = mesi + 1;
+                        String diaFormateado = (diaa < 10) ? "0" + String.valueOf(diaa) : String.valueOf(diaa);
+                        String mesFormateado = (mesActual < 10) ? "0" + String.valueOf(mesActual) : String.valueOf(mesActual);
+                        edtFechaNac.setText("" + diaFormateado + "/" + mesFormateado + "/" + año);
+                        aa = año;
+                        ma = Integer.parseInt(mesFormateado);
+                        edtEdad.setText(calcular(anio, (mes + 1), aa, ma));
+                    }
+                }, anio, mes, dia);
+                recogerFecha.show();
+            }
+        });
+    }
+
+    public String calcular(int a, int m, int aa, int ma) {
+        int años = 0;
+        int meses = 0;
+        if (ma <= m) {
+            años = a - aa;
+            meses = m - ma;
+        } else {
+            años = a - aa - 1;
+            meses = 12 - (ma - m);
+        }
+        return "" + años + " años";
     }
 
     private void updateRecordList() {
